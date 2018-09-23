@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
+
+import socket.SocketServer;
+
 import java.awt.GridLayout;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Server extends JFrame {
 
@@ -52,6 +57,10 @@ public class Server extends JFrame {
 		setContentPane(contentPane);
 		
 		host = new JTextField();
+		host.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		host.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		host.setText("localhost");
 		host.setColumns(10);
@@ -60,17 +69,32 @@ public class Server extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		port = new JTextField();
+		port.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		port.setText("1234");
 		port.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		port.setColumns(10);
 		
 		JLabel lblPort = new JLabel("Port");
 		lblPort.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		
+		SocketServer s;
 		JButton startServer = new JButton("Start Server");
+		startServer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = host.getText();
+				String poRt = port.getText();
+				s = new SocketServer(this, name, poRt);
+			}
+		});
 		startServer.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JButton stopServer = new JButton("Stop Server");
+		stopServer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		stopServer.setEnabled(false);
 		stopServer.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);

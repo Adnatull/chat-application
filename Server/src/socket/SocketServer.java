@@ -13,6 +13,8 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import ui.Server;
+
 // Server class
 public class SocketServer {
 
@@ -28,6 +30,11 @@ public class SocketServer {
 
     //#Hint 2
     private DataOutputStream dos;
+    
+    private Server ui;
+    public SocketServer(Server frame) {
+    	ui = frame;
+    }
 
     public SocketServer(int port) {
         try {
